@@ -26,6 +26,8 @@ import { PageUserList } from "../../pages/setup/userlist";
 import { PageSetupCourse } from "../../pages/setup/setupcourse";
 import { PageCourseEdit } from "../../pages/setup/courseedit";
 import { PageCourseList } from "../../pages/setup/courselist";
+import { PageMenuSetup2 } from "../../pages/setup2/menusetup";
+import { PageUserList2 } from "../../pages/setup2/userlist";
 
 export function LayoutPrivate() {
   const { Header, Sider, Content } = Layout;
@@ -71,6 +73,15 @@ export function LayoutPrivate() {
                   <Link to="/login"></Link>
                 )}
               </Menu.Item>
+              {/* Changes for testing */}
+              <Menu.Item key="6" icon={<ToolOutlined />}>
+                {loggedIn ? (
+                  <Link to="/setup2">Setup</Link>
+                ) : (
+                  <Link to="/login"></Link>
+                )}
+              </Menu.Item>
+              {/* Changes for testing */}
             </Menu>
             <Menu theme="dark" mode="inline">
               <Menu.Item key="4" icon={<LogoutOutlined />} onClick={()=>{dispatch({
@@ -179,6 +190,36 @@ export function LayoutPrivate() {
               ) : (
                 history.push("/login")
               )}
+              {/* test changes */}
+              {loggedIn ? (
+                <Route exact path="/setup2">
+                  <PageMenuSetup2 />
+                </Route>
+              ) : (
+                history.push("/login")
+              )}
+              {loggedIn ? (
+                <Route path="/setup2/newuser">
+                  <PageUserSetup />
+                </Route>
+              ) : (
+                history.push("/login")
+              )}
+              {loggedIn ? (
+                <Route path="/setup2/userlist">
+                  <PageUserList2 />
+                </Route>
+              ) : (
+                history.push("/login")
+              )}
+              {loggedIn ? (
+                <Route path="/setup2/useredit">
+                  <PageUserEdit />
+                </Route>
+              ) : (
+                history.push("/login")
+              )}
+              {/* test changes */}
               {loggedIn ? (
                 <Route path="/setup/newcourse">
                   <PageSetupCourse />
