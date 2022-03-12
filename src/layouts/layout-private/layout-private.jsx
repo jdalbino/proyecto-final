@@ -26,8 +26,10 @@ import { PageUserList } from "../../pages/setup/userlist";
 import { PageSetupCourse } from "../../pages/setup/setupcourse";
 import { PageCourseEdit } from "../../pages/setup/courseedit";
 import { PageCourseList } from "../../pages/setup/courselist";
-import { PageMenuSetup2 } from "../../pages/setup2/menusetup";
-import { PageUserList2 } from "../../pages/setup2/userlist";
+import { PageMenuSetup2 } from "../../pages/setup2/menusetup2";
+import { PageUserList2 } from "../../pages/setup2/userlist2";
+import { PageUserEdit2 } from "../../pages/setup2/useredit2";
+import { PageUserSetup2 } from "../../pages/setup2/setup2";
 
 export function LayoutPrivate() {
   const { Header, Sider, Content } = Layout;
@@ -200,7 +202,7 @@ export function LayoutPrivate() {
               )}
               {loggedIn ? (
                 <Route path="/setup2/newuser">
-                  <PageUserSetup />
+                  <PageUserSetup2 />
                 </Route>
               ) : (
                 history.push("/login")
@@ -214,7 +216,7 @@ export function LayoutPrivate() {
               )}
               {loggedIn ? (
                 <Route path="/setup2/useredit">
-                  <PageUserEdit />
+                  <PageUserEdit2 />
                 </Route>
               ) : (
                 history.push("/login")

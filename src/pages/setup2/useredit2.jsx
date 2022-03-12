@@ -4,14 +4,14 @@ import "./useredit.css";
 import axios from 'axios';
 import { useHistory } from 'react-router';
 
-export function PageUserEdit() {
+export function PageUserEdit2() {
   const {Title}=Typography;
   const history = useHistory();
     return (
         <div className="page-user-edit">
           <Title level={2}>Editar Usuarios:</Title>
             <EditableTable />
-            <Button onClick={()=>{history.push("/setup")}} style={{marginBottom:"1rem"}}>Regresar</Button>
+            <Button onClick={()=>{history.push("/setup2")}} style={{marginBottom:"1rem"}}>Regresar</Button>
         </div>
     )
 };
@@ -52,19 +52,19 @@ export function PageUserEdit() {
     );
   };
 
-
+// GET
 
 function EditableTable()  {
     const [originData,setorigindata] = useState([])
 
 useEffect(()=>{
-    axios.get("https://61ef3d44d593d20017dbb3a9.mockapi.io/users")
+    axios.get("http://127.0.0.1:8080/users")
     .then((destino)=>{
-       setorigindata(destino.data);
+       setorigindata(destino.data.users);
        console.log(originData)
           
     }) 
-},["https://61ef3d44d593d20017dbb3a9.mockapi.io/users"]);
+},["http://127.0.0.1:8080/users"]);
 
   const [form] = Form.useForm();
 
@@ -88,22 +88,25 @@ useEffect(()=>{
     setEditingKey('');
   };
 
+// PUT
   const save = async (id) => {
     try {
       const row = await form.validateFields();
       const newData = [...originData];
       const index = newData.findIndex((item) => id === item.id);
+      console.log('ID COMO ARGUMENTO:',id,typeof(id))
+      console.log('ID COMO INDEX:',index,typeof(index))
 
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, { ...item, ...row });
         setData(newData);
         setEditingKey('');
-        console.log(newData[index].id);
-        axios.put(`https://61ef3d44d593d20017dbb3a9.mockapi.io/users/${newData[index].id}`,newData[index])
+        console.log('EL VALOR A ACTUALIZAR',newData[index]);
+        axios.put(`http://127.0.0.1:8080/user/${newData[index].id}`,newData[index])
         .then((portafolio)=>{
             alert("exito")
-            console.log(portafolio)})
+            console.log('que es esto',portafolio)})
         .catch((er)=>{console.log(er)})
       } else {
         newData.push(row);
@@ -114,6 +117,38 @@ useEffect(()=>{
       console.log('Validate Failed:', errInfo);
     }
   };
+
+  //DELETE
+     const delete_item = async (id) => {
+       try {
+        console.log('ID COMO ARGUMENTO:',id,typeof(id)) 
+        const row = await form.validateFields();
+         const newData = [...originData];
+         console.log('NEW_DATA:',newData);
+         const index = newData.findIndex((item) => id === item.id);
+         console.log('ID COMO INDEX:',index,typeof(index))
+
+         if (index > -1) {
+           const item = newData[index];
+           newData.splice(index, 1, { ...item, ...row });
+           setData(newData);
+           setEditingKey('');
+           console.log('EL VALOR A ELIMINAR',newData[index]);
+           axios.delete(`http://127.0.0.1:8080/user/${newData[index].id}`)
+           .then((portafolio)=>{
+               alert("exito")
+               console.log('que es esto',portafolio)})
+           .catch((er)=>{console.log(er)})
+         } else {
+           newData.push(row);
+           setData(newData);
+           setEditingKey('');
+         }
+       } catch (errInfo) {
+         console.log('Validate Failed:', errInfo);
+       }
+     };
+
 
   const columns = [
     {
@@ -180,9 +215,15 @@ useEffect(()=>{
             </Popconfirm>
           </span>
         ) : (
+          <div>
           <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
             Edit
           </Typography.Link>
+          <br />
+        <Popconfirm title="Sure to Delete?"  onConfirm={() => delete_item(record.id)}>
+          <a style={{cursor:'pointer'}}>Delete</a>
+        </Popconfirm>
+        </div>
         );
       },
     },

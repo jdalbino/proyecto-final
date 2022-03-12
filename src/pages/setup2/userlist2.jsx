@@ -13,7 +13,7 @@ export function PageUserList2(){
     <div style={{padding:"1rem"}}>
         <UserComponentList/>
     </div>
-    <Button type="secondary" style={{ marginLeft: "5px" }} onClick={()=>{history.push("/setup")}}>
+    <Button type="secondary" style={{ marginLeft: "5px" }} onClick={()=>{history.push("/setup2")}}>
           Regresar
         </Button>
 </div>)
@@ -67,14 +67,14 @@ const [objectname, setobjectname] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`https://61ef3d44d593d20017dbb3a9.mockapi.io/users`)
+      .get(`http://127.0.0.1:8080/users`)
       .then((user) => {
-          console.log(user.data)
-          setobjectname(user.data);
+          console.log(user.data.users)
+          setobjectname(user.data.users);
             setisValueLoaded(true);
       })
       .catch((er)=>console.log(er));
-    }, [`https://61ef3d44d593d20017dbb3a9.mockapi.io/users`]);
+    }, [`http://127.0.0.1:8080/users`]);
 
     return !isValueLoded ? ( <Spin tip="Cargando..." size="large" style={{marginLeft:"40%",marginRight:"40%",marginTop:"10%"}}>
     </Spin>) : (

@@ -4,16 +4,16 @@ import { useHistory } from "react-router";
 import axios from "axios";
 import {Form,Input, Button,Alert} from "antd";
 import "./setup.css";
-export function PageUserSetup() {
+export function PageUserSetup2() {
     return (
     <div className="pageusersetup">
       <h2>Crear Nuevo Usuario:</h2>
-      <SetupForm />
+      <SetupForm2 />
     </div>
   );
 }
-
-export function SetupForm() {
+// POST
+export function SetupForm2() {
 
     const globaluserID = useSelector((state) => state.userID);
   const history = useHistory();
@@ -31,7 +31,7 @@ export function SetupForm() {
     };
     //post request to create a user in the api with form values.
     axios
-      .post(`https://61ef3d44d593d20017dbb3a9.mockapi.io/users/`, NewUserData)
+      .post(`http://127.0.0.1:8080/users`, NewUserData)
       .then((updateuser) => {
         alert("Usuario creado con éxito");
         form.resetFields();
@@ -230,7 +230,7 @@ export function SetupForm() {
           type="secondary"
           style={{ marginLeft: "5px" }}
           onClick={() => {
-            history.push("/setup");
+            history.push("/setup2");
           }}
         >
           Cancel

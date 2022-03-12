@@ -23,7 +23,7 @@ function MenuForm() {
         <Button
           size={"large"}
           onClick={() => {
-            history.push("/setup/newuser");
+            history.push("/setup2/newuser");
           }}
           style={{ marginBottom: "1rem",width:"160px" }}
         >
@@ -34,7 +34,7 @@ function MenuForm() {
           size={"large"}
           style={{marginBottom: "1rem",width:"160px"}}
           onClick={() => {
-            history.push("/setup/useredit");
+            history.push("/setup2/useredit");
           }}
         >
           Editar Usuarios
@@ -44,7 +44,7 @@ function MenuForm() {
           size={"large"}
           style={{marginBottom: "1rem",width:"160px"}}
           onClick={() => {
-            history.push("/setup/userlist");
+            history.push("/setup2/userlist");
           }}
         >
           Lista de Usuarios
