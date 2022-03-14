@@ -31,7 +31,7 @@ export function SetupForm2() {
     };
     //post request to create a user in the api with form values.
     axios
-      .post(`http://127.0.0.1:8080/users`, NewUserData)
+      .post(`http://192.168.1.137:8080/users`, NewUserData)
       .then((updateuser) => {
         alert("Usuario creado con éxito");
         form.resetFields();

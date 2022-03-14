@@ -67,14 +67,14 @@ const [objectname, setobjectname] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8080/users`)
+      .get(`http://192.168.1.137:8080/users`)
       .then((user) => {
           console.log(user.data.users)
           setobjectname(user.data.users);
             setisValueLoaded(true);
       })
       .catch((er)=>console.log(er));
-    }, [`http://127.0.0.1:8080/users`]);
+    }, [`http://192.168.1.137:8080/users`]);
 
     return !isValueLoded ? ( <Spin tip="Cargando..." size="large" style={{marginLeft:"40%",marginRight:"40%",marginTop:"10%"}}>
     </Spin>) : (

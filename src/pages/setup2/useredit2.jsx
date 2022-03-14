@@ -58,13 +58,13 @@ function EditableTable()  {
     const [originData,setorigindata] = useState([])
 
 useEffect(()=>{
-    axios.get("http://127.0.0.1:8080/users")
+    axios.get("http://192.168.1.137:8080/users")
     .then((destino)=>{
        setorigindata(destino.data.users);
        console.log(originData)
           
     }) 
-},["http://127.0.0.1:8080/users"]);
+},["http://192.168.1.137:8080/users"]);
 
   const [form] = Form.useForm();
 
@@ -103,7 +103,7 @@ useEffect(()=>{
         setData(newData);
         setEditingKey('');
         console.log('EL VALOR A ACTUALIZAR',newData[index]);
-        axios.put(`http://127.0.0.1:8080/user/${newData[index].id}`,newData[index])
+        axios.put(`http://192.168.1.137:8080/user/${newData[index].id}`,newData[index])
         .then((portafolio)=>{
             alert("exito")
             console.log('que es esto',portafolio)})
@@ -134,7 +134,7 @@ useEffect(()=>{
            setData(newData);
            setEditingKey('');
            console.log('EL VALOR A ELIMINAR',newData[index]);
-           axios.delete(`http://127.0.0.1:8080/user/${newData[index].id}`)
+           axios.delete(`http://192.168.1.137:8080/user/${newData[index].id}`)
            .then((portafolio)=>{
                alert("exito")
                console.log('que es esto',portafolio)})
