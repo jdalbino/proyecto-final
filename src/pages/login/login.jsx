@@ -36,7 +36,7 @@ export function PageLogin() {
             type: "SET_USER_ID",
             iduser: newUserID,
           })
-          history.push("/courses");
+          history.push("/setup2");
           alert(`Bienvenido ${values.username}`);
         }
       });
@@ -48,7 +48,8 @@ export function PageLogin() {
   return (
     <div className="loginpage">
       <div>
-        <div className="title">Cursos Virtuales</div>
+        <div className="title">Cursos virtuales:
+        </div>
         <div className="loging-wrapper">
           <Form
             name="login"
@@ -68,6 +69,7 @@ export function PageLogin() {
             <Form.Item
               label="Username"
               name="username"
+              initialValue='admin'
               rules={[
                 {
                   required: true,
@@ -81,6 +83,7 @@ export function PageLogin() {
             <Form.Item
               label="Password"
               name="password"
+              initialValue='123'
               rules={[
                 {
                   required: true,

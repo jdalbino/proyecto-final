@@ -50,7 +50,7 @@ function MenuForm() {
           Lista de Usuarios
         </Button>
         <br/>
-        <Title level={5}>Cursos:</Title>
+        {/* <Title level={5}>Cursos:</Title>
         <Button
           size={"large"}
           style={{width:"160px",marginBottom: "1rem"}}
@@ -79,7 +79,7 @@ function MenuForm() {
           }}
         >
           Lista de Cursos
-        </Button>
+        </Button> */}
       </div>
     </div>
   ) : (

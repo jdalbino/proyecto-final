@@ -47,7 +47,7 @@ export function LayoutPrivate() {
           <div className="logo" />
           <div className="navBar">
             <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-              <Menu.Item key="1" icon={<ReadOutlined />}>
+              {/* <Menu.Item key="1" icon={<ReadOutlined />}>
                 {loggedIn ? (
                   <Link to="/courses">Mis Cursos</Link>
                 ) : (
@@ -74,7 +74,7 @@ export function LayoutPrivate() {
                 ) : (
                   <Link to="/login"></Link>
                 )}
-              </Menu.Item>
+              </Menu.Item> */}
               {/* Changes for testing */}
               <Menu.Item key="6" icon={<ToolOutlined />}>
                 {loggedIn ? (
